@@ -1,8 +1,17 @@
 import type { Request, Response, NextFunction } from "express";
 import { auth } from "../auth";
 import { ApiError } from "../utils";
+
+
+interface AuthUser {
+  id: string;
+  name: string;
+  image?: string | null;
+  username?: string | null;
+}
+
 export interface AuthRequest extends Request {
-  userId?: string;
+  user?: AuthUser;
 }
 
 export const requiredAuth = async (
@@ -14,6 +23,6 @@ export const requiredAuth = async (
   if (!session?.user) {
     return next(new ApiError(401, "Unauthorized"));
   }
-  req.userId = session.user.id;
+  req.user = session.user
   next();
 };
