@@ -1,5 +1,5 @@
-import { env } from "./env";
-import { connectDB } from "./db";
+import { env } from "./env.js";
+import { connectDB } from "./db.js";
 
 export {
     env,

@@ -1,6 +1,6 @@
-import { app } from "./app";
-import { connectDB, env } from "./config";
-import { initAuth } from "./utils";
+import { app } from "./app.js";
+import { connectDB, env } from "./config/index.js";
+import { initAuth } from "./utils/index.js";
 
 connectDB()
 .then(()=>{

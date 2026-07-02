@@ -2,7 +2,7 @@ import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { betterAuth } from "better-auth/minimal";
 import { username } from "better-auth/plugins";
 import mongoose from "mongoose";
-import { env } from "../config";
+import { env } from "../config/index.js";
 import type { Db } from "mongodb";
 
 export const initAuth = async () => {
