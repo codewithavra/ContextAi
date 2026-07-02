@@ -30,4 +30,8 @@ export const env = {
 
   EMBEDDING_MODEL: requiredEnv("EMBEDDING_MODEL"),
   TEXT_MODEL: requiredEnv("TEXT_MODEL"),
+
+  GITHUB_CLIENT_ID:requiredEnv("GITHUB_CLIENT_ID"),
+  GITHUB_CLIENT_SECRET:requiredEnv("GITHUB_CLIENT_SECRET"),
+
 };
