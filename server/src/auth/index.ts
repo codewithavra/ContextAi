@@ -9,6 +9,7 @@ import { env } from "../config";
 export const auth = betterAuth({
   baseURL: env.BETTER_AUTH_URL,
   database: mongodbAdapter(mongoose.connection.db as unknown as Db),
+  trustedOrigins : [`${env.CORS_ORIGIN}`],
   emailAndPassword: {
     enabled: true,
   },

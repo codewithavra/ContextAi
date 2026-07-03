@@ -8,6 +8,7 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch ./src/server.ts",
+    "dev-worker": "tsx watch ./src/workers/ingest.worker.ts",
     "start": "node ./dist/server.js"
   },
   "dependencies": {
@@ -28,7 +29,7 @@
     "mongodb": "^7.4.0",
     "mongoose": "^9.7.3",
     "multer": "^2.2.0",
-    "pdf-parse": "^2.4.5"
+    "unpdf": "^1.6.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",

@@ -1,8 +1,9 @@
-import { app } from "./app.js";
+
 import { connectDB, env } from "./config/index.js";
 
 connectDB()
-.then(()=>{
+.then(async ()=>{
+    const { app } = await import("./app.js");
     app.listen(env.PORT, ()=>{
         console.log(`App is Running @ http://localhost:${env.PORT}`)
     })
