@@ -14,6 +14,8 @@ export type PersonaKey =
   | "default"
   | "academic"
   | "friendly"
+  | "expert"
+  | "socratic"
   | "concise"
   | "technical";
 

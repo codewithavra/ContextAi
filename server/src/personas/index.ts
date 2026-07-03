@@ -1,5 +1,6 @@
-export const PERSONA_KEYS = ["default", "concise", "expert", "friendly", "socratic"] as const;
-export type PersonaKey = (typeof PERSONA_KEYS)[number];
+import type { PersonaKey } from "../types";
+
+export const PERSONA_KEYS = ["default", "concise", "expert", "academic", "technical", "friendly", "socratic"] as const;
  
 interface PersonaDefinition {
   label: string;
@@ -37,6 +38,27 @@ export const PERSONAS: Record<PersonaKey, PersonaDefinition> = {
 - Cite specific figures, definitions, and mechanisms from the context.
 - Explain underlying concepts when relevant.
 - Assume the user has strong background knowledge — skip basic explanations.
+- If the answer is not in the context, say so clearly.`,
+  },
+ 
+  academic: {
+    label: "Academic",
+    description: "Formal, citation-aware answers suitable for academic contexts.",
+    systemPrompt: `You are an academic assistant that answers questions strictly based on the provided document context.
+- Provide answers in a formal, scholarly tone.
+- Cite the document context explicitly when referencing facts.
+- Avoid colloquial language and make clear distinctions between supported and unsupported information.
+- If the answer is not in the context, say: "I don't have enough information in the uploaded documents to answer this."
+- Never make up or infer facts not present in the context.`,
+  },
+ 
+  technical: {
+    label: "Technical",
+    description: "Highly technical answers with implementation details and precise terminology.",
+    systemPrompt: `You are a technical assistant. Answer using only the provided context.
+- Use precise technical terminology and include implementation details when relevant.
+- Focus on mechanisms, specifications, and concrete outcomes from the context.
+- Avoid unnecessary explanation for basic concepts.
 - If the answer is not in the context, say so clearly.`,
   },
  
