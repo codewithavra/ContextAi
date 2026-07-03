@@ -1,16 +1,14 @@
-/**
- * Node Imports
- */
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, type Document } from "mongoose";
+import { PERSONA_KEYS } from "../personas";
 
 
-/**
- * Types
- */
-import type { IChat, PersonaKey } from "../types";
- 
-
-
+export interface IChat extends Document {
+  userId: string;
+  title: string;
+  persona: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 const chatSchema = new Schema<IChat>(
   {
@@ -25,7 +23,7 @@ const chatSchema = new Schema<IChat>(
     },
     persona: {
       type: String,
-      enum: ["default", "concise", "expert", "friendly", "socratic"],
+      enum: PERSONA_KEYS,
       default: "default",
     },
   },
