@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { requiredAuth } from "../middleware";
-import { askQuestion, createChat, getChatMessages, updateChatPersona } from "../controllers";
+import { askQuestion, createChat, deleteChat, getChats, getChatMessages, updateChatPersona } from "../controllers";
 import { listPersonas } from "../personas";
 
 export const ChatRouter = Router();
@@ -11,6 +11,8 @@ ChatRouter.get("/personas", (_req, res) => {
 });
 
 ChatRouter.post("/", requiredAuth, createChat);
+ChatRouter.get("/", requiredAuth, getChats);
+ChatRouter.delete("/:chatId", requiredAuth, deleteChat);
 ChatRouter.post("/:chatId/messages", requiredAuth, askQuestion);
 ChatRouter.get("/:chatId/messages", requiredAuth, getChatMessages);
 ChatRouter.patch("/:chatId/persona", requiredAuth, updateChatPersona);

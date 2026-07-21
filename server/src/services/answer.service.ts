@@ -25,9 +25,13 @@ export async function generateAnswer(
     )
     .join("\n\n---\n\n");
 
-  // persona prompt handles tone + behavior rules
-  // context is always appended after so grounding is consistent across all personas
-  const systemPrompt = `${getPersonaPrompt(persona)}
+  // ContextAI identity is kept independent of the chosen response persona.
+  // This makes identity questions accurate without changing the document-only policy.
+  const systemPrompt = `You are ContextAI, a private document-grounded AI assistant.
+- Your name is ContextAI. If asked who you are, identify yourself as ContextAI.
+- Do not claim to be a generic unnamed assistant or a different product.
+
+${getPersonaPrompt(persona)}
 
 CONTEXT FROM UPLOADED DOCUMENTS:
 ${context}`;
