@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "tsx watch ./src/server.ts",
     "dev-worker": "tsx watch ./src/workers/ingest.worker.ts",
-    "start": "node ./dist/server.js"
+    "start": "node ./dist/server.js",
+    "build": "tsc"
   },
   "dependencies": {
     "@better-auth/mongo-adapter": "^1.6.23",
