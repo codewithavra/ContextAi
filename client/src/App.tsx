@@ -1,20 +1,19 @@
-import { Button } from "@/components/ui/button"
+import { AuthScreen } from "@/components/auth-screen"
+import { ChatWorkspace } from "@/components/chat-workspace"
+import { useSession } from "@/lib/auth-client"
 
 export function App() {
+  // `useSession` keeps this screen in sync after sign-in, sign-out, or GitHub redirect.
+  const { data: session, isPending } = useSession()
+
+  if (isPending) {
+    return <main className="grid min-h-svh place-items-center bg-zinc-100 text-sm text-zinc-500">Loading your workspace…</main>
+  }
+
+  if (!session?.user) return <AuthScreen />
+
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
+    <ChatWorkspace userName={session.user.name || session.user.email} />
   )
 }
 
