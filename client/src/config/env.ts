@@ -1,5 +1,3 @@
-import "dotenv/config"
-
 const requiredEnv = (name: string): string => {
   const value = import.meta.env[name]
   if (!value) {
